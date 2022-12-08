@@ -3,12 +3,13 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import path from "path";
+import cors from "cors"
 const __dirname = path.resolve();
-const app = express();
+const app = express();//express ko call kardeya
 
 import errorMiddleware from "./middleware/error.js"
 // import fileUpload from "express-fileupload"
-
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());//()bohot jaruri hai mt bhulna
 // app.use(bodyParser.urlencoded({extended: true}));
@@ -34,7 +35,7 @@ app.use("/api/v1", order);
 app.use("/api/v1", add);
 app.use("/api/v1", payment);
 //middleware 
-// app.use(express.static(path.join(__dirname,"../E-Commerce/frontend/build"))) //static file koo handle karne ke leye
+app.use(express.static(path.join(__dirname,"../frontend/build"))) //static file koo handle karne ke leye
 
 app.get('*',(req,res)=>{
   app.use(express.static(path.join(__dirname, "../frontend/build")));
