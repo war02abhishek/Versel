@@ -35,12 +35,25 @@ app.use("/api/v1", order);
 app.use("/api/v1", add);
 app.use("/api/v1", payment);
 //middleware 
-app.use(express.static(path.join(__dirname,"../frontend/build"))) //static file koo handle karne ke leye
+// app.use(express.static(path.join(__dirname,"../frontend/build"))) //static file koo handle karne ke leye
 
-app.get('*',(req,res)=>{
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-    res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"))
-})
+// app.get('*',(req,res)=>{
+//   app.use(express.static(path.join(__dirname, "../frontend/build")));
+//     res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"))
+// })
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "../frontend/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 app.use(errorMiddleware);
 export default app;
