@@ -12,7 +12,7 @@ import errorMiddleware from "./middleware/error.js"
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());//()bohot jaruri hai mt bhulna
-// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 // app.use(fileUpload());
 
 //Config
@@ -41,6 +41,7 @@ app.use("/api/v1", payment);
 //   app.use(express.static(path.join(__dirname, "../frontend/build")));
 //     res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"))
 // })
+//concurently karke ek hai jisse hum ek hi commmand par both frontend and backend start kar sakte hai
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 

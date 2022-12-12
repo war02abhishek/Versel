@@ -35,6 +35,8 @@ import {
 } from "../constants/userConstant";
 
 import axios from "axios";
+import * as api from "./api.js";
+// const API = axios.create({ baseURL: "http://localhost:4000/" });
 
 
 export const login = (email, password,navigate) =>async(dispatch) =>{
@@ -113,7 +115,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_REQUEST });
     // const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(`api/v1/me`);
+    const { data } = await axios.get(`/api/v1/me`);
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
       // console.log(error);

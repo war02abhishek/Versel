@@ -8,7 +8,7 @@ const sendToken=(user,statusCode,res)=>{
      //options for cookies
      const options = {
        expires: Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000,  //converting 5d in millisec
-       httpOnly: true,
+       httpOnly: false,
      };
 
 
